@@ -12,16 +12,16 @@ license=('GPL')
 depends=('java-runtime>=1.5' 'wget' 'bash')
 install='jdownloader.install'
 source=('http://212.117.163.148/jd.sh'
-		'http://jdownloader.org/_media/knowledge/wiki/jdownloader.png?w=128&h=128'
-		'jdownloader.desktop')
+        'http://jdownloader.org/_media/knowledge/wiki/jdownloader.png?w=128&h=128'
+        'jdownloader.desktop')
 md5sums=('5be66194f939c9c060db6c061c09b421'
          'd22a9c09b613e1645425999339525a71'
          '0ae072d5f48db00ae5f34386b6e91762')
 build() {
-	install -d $pkgdir/usr/bin
+    install -d $pkgdir/usr/bin
     install -D -m755 $srcdir/jd.sh "$pkgdir/usr/bin/jdownloader" || return 1
-	install -d $pkgdir/usr/share/applications
-	install -d $pkgdir/usr/share/pixmaps
+    install -d $pkgdir/usr/share/applications
+    install -d $pkgdir/usr/share/pixmaps
     install -D -m644 "$srcdir/jdownloader.desktop" "$pkgdir/usr/share/applications/$pkgname.desktop" || return 1
     install -D -m644 "$srcdir/jdownloader.png?w=128&h=128" "$pkgdir/usr/share/pixmaps/$pkgname.png" || return 1
 }
