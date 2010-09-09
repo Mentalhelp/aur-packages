@@ -55,7 +55,7 @@ static const Layout layouts[] = {
 /* commands */
 //static const char *cmd[]  = { , NULL };
 static const char *fileman[]  = { "tuxcmd", NULL };
-static const char *browser[]  = { "firefox", NULL };
+static const char *browser[]  = { "chromium", NULL };
 static const char *runcmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *terminal[]  = { "terminal-screen", NULL };
 

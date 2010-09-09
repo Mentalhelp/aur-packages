@@ -18,7 +18,7 @@ source=(http://dl.suckless.org/dwm/dwm-$pkgver.tar.gz
 	dwm.desktop
 	'bstack.diff::http://dwm.suckless.org/patches/dwm-5.8.2-bstack.diff')
 md5sums=('f0b422bfeaa812d66c6dd15c3cc92a6b'
-         'efdd515fdc0f76f0d8843d5e61b1c5f9'
+         'cf08deaa0fe64d2bd0fd89ec7f210c14'
          '939f403a71b6e85261d09fc3412269ee'
          'a1c3c37e349c324012ce8d6e967fd4cc')
 
