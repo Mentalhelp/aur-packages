@@ -69,6 +69,7 @@ static const char *mpctoggle[]  = { "mpc","toggle",NULL };
 static const char *mpcnp[]  = { "mpd-np-xsel",NULL };
 
 static const char *lock[]  = { "slock",NULL };
+static const char *suspend[]  = { "lock",NULL };
 
 static const char *dmenushutdown[]  = { "dmenu_shutdown", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *dmenumpd[]  = { "dmenu_mpd", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
@@ -83,7 +84,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_q,      spawn,          {.v = terminal } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = browser } },
 
-	{ Mod5Mask,                     XK_F12,    spawn,          {.v = lock } },
+	{ Mod5Mask,                     XK_F11,    spawn,          {.v = lock } },
+	{ Mod5Mask,                     XK_F12,    spawn,          {.v = suspend } },
 
 	{ MODKEY,                       XK_y,      spawn,          {.v = dmenushutdown } },
 	{ MODKEY,                       XK_x,      spawn,          {.v = dmenumpd } },
