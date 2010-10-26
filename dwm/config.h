@@ -21,6 +21,7 @@ static const Rule rules[] = {
 	{ "Chromium",      NULL,       NULL,       1 << 1,       False,       -1 },
 	{ "Namoroka",      NULL,       NULL,       1 << 1,       False,       -1 },
 	{ "Firefox",       NULL,       NULL,       1 << 1,       False,       -1 },
+	{ "Gmpc",          NULL,       NULL,       1 << 2,       False,       -1 },
 	{ "Gxmessage",     NULL,       NULL,       0,            True,        -1 },
 	{ "MPlayer",       NULL,       NULL,       0,            True,        -1 },
 	{ "Truecrypt",     NULL,       NULL,       0,            True,        -1 },
