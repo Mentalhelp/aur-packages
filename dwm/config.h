@@ -101,7 +101,6 @@ static Key keys[] = {
 	{ 0, XF86XK_AudioPrev,        spawn,        { .v = mpcprev  } },
 	{ Mod5Mask, XK_F8,            spawn,        { .v = mpcprev  } },
 	{ 0, XF86XK_AudioStop,        spawn,        { .v = mpcstop } },
-	{ Mod5Mask, XK_F11,           spawn,        { .v = mpcstop } },
 	{ 0, XF86XK_AudioPlay,        spawn,        { .v = mpctoggle } },
 	{ Mod5Mask, XK_F10,           spawn,        { .v = mpctoggle } },
 	{ Mod5Mask, XK_n,             spawn,        { .v = mpcnp } },
