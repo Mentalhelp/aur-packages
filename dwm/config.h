@@ -55,7 +55,7 @@ static const Layout layouts[] = {
 
 /* commands */
 //static const char *cmd[]  = { , NULL };
-static const char *fileman[]  = { "tuxcmd", NULL };
+static const char *fileman[]  = { "thunar", NULL };
 static const char *browser[]  = { "chromium", NULL };
 static const char *runcmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *terminal[]  = { "terminal-screen", NULL };
@@ -69,8 +69,8 @@ static const char *mpcstop[]  = { "mpc","stop",NULL };
 static const char *mpctoggle[]  = { "mpc","toggle",NULL };
 static const char *mpcnp[]  = { "mpd-np-xsel",NULL };
 
-static const char *lock[]  = { "slock",NULL };
-static const char *suspend[]  = { "lock",NULL };
+static const char *lock[]  = { "lock",NULL };
+static const char *suspend[]  = { "lock-suspend",NULL };
 
 static const char *dmenushutdown[]  = { "dmenu_shutdown", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *dmenumpd[]  = { "dmenu_mpd", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
