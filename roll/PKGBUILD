@@ -1,4 +1,6 @@
+# Maintainer: Jakob Matthes <jakob.matthes@gmail.com>
 # Contributor: G_Syme <demichan(at)mail(dot)upb(dot)de>
+
 pkgname=roll
 pkgver=1.1.4
 pkgrel=1
