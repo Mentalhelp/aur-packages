@@ -1,0 +1,4 @@
+#!/bin/sh
+APPBASE="/usr/share/java/bluej"
+CP="$APPBASE/bluej.jar:$APPBASE/junit.jar:$APPBASE/tuebingen-test.jar:$APPBASE/tester.jar"
+/usr/bin/java -cp "$CP" -Dfile.encoding=UTF-8 bluej.Boot  "$@"

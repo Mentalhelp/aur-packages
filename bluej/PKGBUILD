@@ -1,0 +1,28 @@
+# Maintainer: PyroPeter <abi1789 @ googlemail . com>
+# Contributor: DarkHeart <fumbles@ymail.com>
+pkgname=bluej
+pkgver=3.0.4
+pkgrel=3
+pkgdesc="An integrated Java environment specifically designed for introductory teaching"
+arch=('any')
+url="http://www.bluej.org"
+license=('GPL2' 'BSD')
+depends=('java-runtime' 'java-environment')
+makedepends=('libarchive')
+source=(http://www-pu.informatik.uni-tuebingen.de/users/hirzel/info2-sose-2011/bluej/BlueJ-generic-304-WSI-20110412.jar
+        bluej
+        bluej.desktop)
+md5sums=('6613364227ac04985dd41ee5a2ac7546'
+         '52a0c78664ad8513c2d357ac773bea42'
+         '00c281cb68bb08c1822d89a6b7f8c557')
+
+package() {
+  cd "$srcdir"
+  bsdtar -x -f "bluej-dist.jar"
+  mkdir -p "$pkgdir/usr/share/java"
+  cp -r lib "$pkgdir/usr/share/java/bluej"
+  install -Dm644 LICENSE.txt "$pkgdir/usr/share/licenses/bluej/license.txt"
+  install -Dm644 THIRDPARTYLICENSE.txt "$pkgdir/usr/share/licenses/bluej/thirdpartylicense.txt"
+  install -Dm644 bluej.desktop "$pkgdir/usr/share/applications/bluej.desktop"
+  install -Dm755 bluej "$pkgdir/usr/bin/bluej"
+}
