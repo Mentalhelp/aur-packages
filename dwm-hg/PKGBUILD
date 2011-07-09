@@ -1,0 +1,54 @@
+# Contributer: v2punkt0 <v2punkt0@gmail.com>
+
+pkgname='dwm-hg'
+pkgver=1559
+pkgrel=1
+pkgdesc="The latest hg pull of dwm"
+url="http://dwm.suckless.org"
+license=('MIT')
+arch=('i686' 'x86_64')
+depends=('libx11')
+makedepends=('mercurial' 'sed')
+conflicts=('dwm')
+provides=('dwm')
+source=('http://dwm.suckless.org/patches/nmaster-ncol.c'
+        'config.h')
+md5sums=('279b014d22674cfc5eab60398c5d3a2e'
+         'f6ddd0a1aba0fc59dcfbe2ca5e09478c')
+
+_hgroot='http://hg.suckless.org'
+_hgrepo='dwm'
+
+build() {
+    cd $srcdir
+
+    # update the repo, else clone a new one
+    if [ -d $_hgrepo ]; then
+        cd $_hgrepo
+        make clean
+        hg pull -u
+    else
+        hg clone ${_hgroot}/${_hgrepo}
+        cd $_hgrepo
+    fi
+
+    cp $srcdir/config.h .
+    cp $srcdir/nmaster-ncol.c .
+
+    # add correct settings to config.mk
+    sed -i "s|^PREFIX =.*|PREFIX = /usr|" config.mk
+    sed -i "s|^X11INC =.*|X11INC = /usr/include/X11|" config.mk
+    sed -i "s|^X11LIB =.*|X11LIB = /usr/lib/X11|" config.mk
+
+    msg "Starting build process."
+    make || return 1
+}
+
+package() {
+    cd $srcdir/$_hgrepo
+
+    make PREFIX=$pkgdir/usr install
+
+    mkdir -p $pkgdir/usr/share/licenses/dwm
+    cp LICENSE $pkgdir/usr/share/licenses/dwm
+}
