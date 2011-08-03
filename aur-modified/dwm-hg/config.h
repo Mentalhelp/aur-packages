@@ -53,7 +53,7 @@ static const Layout layouts[] = {
     { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* commands */
-static const char *terminal[]  = { "terminal-screen", NULL };
+static const char *terminal[]  = { "terminal-tmux", NULL };
 static const char *fileman[]  = { "pcmanfm", NULL };
 static const char *browser[]  = { "chromium", NULL };
 static const char *runcmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };

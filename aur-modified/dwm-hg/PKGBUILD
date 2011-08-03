@@ -1,7 +1,7 @@
 # Contributer: v2punkt0 <v2punkt0@gmail.com>
 
 pkgname='dwm-hg'
-pkgver=1559
+pkgver=1573
 pkgrel=1
 pkgdesc="The latest hg pull of dwm"
 url="http://dwm.suckless.org"
@@ -52,3 +52,5 @@ package() {
     mkdir -p $pkgdir/usr/share/licenses/dwm
     cp LICENSE $pkgdir/usr/share/licenses/dwm
 }
+md5sums=('279b014d22674cfc5eab60398c5d3a2e'
+         '30271563fc414270b7fdcc85e67729ab')
