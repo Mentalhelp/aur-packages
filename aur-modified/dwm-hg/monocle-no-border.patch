@@ -1,0 +1,17 @@
+diff -r b899c8748939 dwm.c
+--- a/dwm.c	Mon Aug 15 18:44:12 2011 +0200
++++ b/dwm.c	Wed Aug 17 23:20:16 2011 +0200
+@@ -1195,8 +1195,11 @@
+ 			n++;
+ 	if(n > 0) /* override layout symbol */
+ 		snprintf(m->ltsymbol, sizeof m->ltsymbol, "[%d]", n);
+-	for(c = nexttiled(m->clients); c; c = nexttiled(c->next))
+-		resize(c, m->wx, m->wy, m->ww - 2 * c->bw, m->wh - 2 * c->bw, False);
++	for(c = nexttiled(m->clients); c; c = nexttiled(c->next)) {
++		c->bw = 0;
++		resize(c, m->wx, m->wy, m->ww, m->wh, False);
++		c->bw = borderpx;
++    }
+ }
+ 
+ void

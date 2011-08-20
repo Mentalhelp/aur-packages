@@ -1,7 +1,7 @@
 # Contributer: v2punkt0 <v2punkt0@gmail.com>
 
 pkgname='dwm-hg'
-pkgver=1573
+pkgver=1575
 pkgrel=1
 pkgdesc="The latest hg pull of dwm"
 url="http://dwm.suckless.org"
@@ -12,9 +12,12 @@ makedepends=('mercurial' 'sed')
 conflicts=('dwm')
 provides=('dwm')
 source=('http://dwm.suckless.org/patches/nmaster-ncol.c'
-        'config.h')
+        'config.h'
+        'monocle-no-border.patch')
 md5sums=('279b014d22674cfc5eab60398c5d3a2e'
-         'f6ddd0a1aba0fc59dcfbe2ca5e09478c')
+         '30271563fc414270b7fdcc85e67729ab'
+         'ea218fd4823ea9b5cbf6b129473b3a2a')
+
 
 _hgroot='http://hg.suckless.org'
 _hgrepo='dwm'
@@ -34,6 +37,7 @@ build() {
 
     cp $srcdir/config.h .
     cp $srcdir/nmaster-ncol.c .
+    patch -p1 < $srcdir/monocle-no-border.patch
 
     # add correct settings to config.mk
     sed -i "s|^PREFIX =.*|PREFIX = /usr|" config.mk
@@ -52,5 +56,3 @@ package() {
     mkdir -p $pkgdir/usr/share/licenses/dwm
     cp LICENSE $pkgdir/usr/share/licenses/dwm
 }
-md5sums=('279b014d22674cfc5eab60398c5d3a2e'
-         '30271563fc414270b7fdcc85e67729ab')
