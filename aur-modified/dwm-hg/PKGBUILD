@@ -15,7 +15,7 @@ source=('http://dwm.suckless.org/patches/nmaster-ncol.c'
         'config.h'
         'monocle-no-border.patch')
 md5sums=('279b014d22674cfc5eab60398c5d3a2e'
-         '30271563fc414270b7fdcc85e67729ab'
+         'd3f2b312c1c9a0f3c1969f4a797a95dc'
          'ea218fd4823ea9b5cbf6b129473b3a2a')
 
 

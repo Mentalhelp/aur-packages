@@ -19,13 +19,11 @@ static const char *tags[] = { "1", "2", "3", "4", "5", "6" };
 static const Rule rules[] = {
     /* class      instance    title       tags mask     isfloating   monitor */
     { "Chromium", NULL,       NULL,       1 << 1,       False,       -1 },
-    { "Firefox",  NULL,       NULL,       1 << 1,       False,       -1 },
     { "Ario",     NULL,       NULL,       1 << 2,       False,       -1 },
-    { "Pidgin",   NULL,       NULL,       1 << 4,       False,       -1 },
+    { "Firefox",  NULL,       NULL,       1 << 5,       False,       -1 },
     { "Gxmessage",NULL,       NULL,       0,            True,        -1 },
     { "MPlayer",  NULL,       NULL,       0,            True,        -1 },
-    { "Truecrypt",NULL,       NULL,       0,            True,        -1 },
-    { "qemu-system-x86_64",   NULL,       NULL,       0,            True,        -1 },
+    { "qemu-system-x86_64",NULL,NULL,     0,            True,        -1 },
 };
 
 /* layout(s) */
