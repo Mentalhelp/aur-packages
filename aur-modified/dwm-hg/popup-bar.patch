@@ -1,0 +1,87 @@
+diff -r b899c8748939 dwm.c
+--- a/dwm.c	Mon Aug 15 18:44:12 2011 +0200
++++ b/dwm.c	Thu Oct 06 16:29:33 2011 +0200
+@@ -133,6 +133,7 @@
+ 	unsigned int sellt;
+ 	unsigned int tagset[2];
+ 	Bool showbar;
++	Bool popupbar;
+ 	Bool topbar;
+ 	Client *clients;
+ 	Client *sel;
+@@ -223,6 +224,7 @@
+ static int textnw(const char *text, unsigned int len);
+ static void tile(Monitor *);
+ static void togglebar(const Arg *arg);
++static void popupbar(Bool show);
+ static void togglefloating(const Arg *arg);
+ static void toggletag(const Arg *arg);
+ static void toggleview(const Arg *arg);
+@@ -263,6 +265,7 @@
+ 	[Expose] = expose,
+ 	[FocusIn] = focusin,
+ 	[KeyPress] = keypress,
++	[KeyRelease] = keypress,
+ 	[MappingNotify] = mappingnotify,
+ 	[MapRequest] = maprequest,
+ 	[PropertyNotify] = propertynotify,
+@@ -1015,6 +1018,12 @@
+ 		KeyCode code;
+ 
+ 		XUngrabKey(dpy, AnyKey, AnyModifier, root);
++
++		XGrabKey(dpy, XKeysymToKeycode(dpy, XK_Super_L), AnyModifier, root,
++				True, GrabModeAsync, GrabModeAsync);
++		XGrabKey(dpy, XKeysymToKeycode(dpy, XK_Super_R), AnyModifier, root,
++				True, GrabModeAsync, GrabModeAsync);
++
+ 		for(i = 0; i < LENGTH(keys); i++)
+ 			if((code = XKeysymToKeycode(dpy, keys[i].keysym)))
+ 				for(j = 0; j < LENGTH(modifiers); j++)
+@@ -1076,11 +1085,21 @@
+ 
+ 	ev = &e->xkey;
+ 	keysym = XKeycodeToKeysym(dpy, (KeyCode)ev->keycode, 0);
++	if(keysym == XK_Super_L || keysym == XK_Super_R) {
++		popupbar(ev->type == KeyPress);
++		return;
++	}
++	if(ev->type == KeyRelease) {
++		return;
++	}
++
+ 	for(i = 0; i < LENGTH(keys); i++)
+ 		if(keysym == keys[i].keysym
+ 		&& CLEANMASK(keys[i].mod) == CLEANMASK(ev->state)
+ 		&& keys[i].func)
+ 			keys[i].func(&(keys[i].arg));
++
++	popupbar(selmon->popupbar);
+ }
+ 
+ void
+@@ -1687,6 +1706,24 @@
+ }
+ 
+ void
++popupbar(Bool show) {
++	if(selmon->showbar) return;
++
++	if(show != selmon->popupbar) {
++		selmon->popupbar = show;
++		if(show) {
++			selmon->by = selmon->topbar ? selmon->wy : selmon->wy + selmon->wh;
++		}
++		else {
++			selmon->by = -bh;
++		}
++		XMoveResizeWindow(dpy, selmon->barwin, selmon->wx, selmon->by, selmon->ww, bh);
++	}
++
++	if(show) XRaiseWindow(dpy, selmon->barwin);
++}
++
++void
+ togglefloating(const Arg *arg) {
+ 	if(!selmon->sel)
+ 		return;
