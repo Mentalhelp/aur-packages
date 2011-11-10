@@ -1,7 +1,7 @@
 # Contributer: v2punkt0 <v2punkt0@gmail.com>
 
 pkgname='dwm-hg'
-pkgver=1575
+pkgver=1588
 pkgrel=1
 pkgdesc="The latest hg pull of dwm"
 url="http://dwm.suckless.org"
@@ -11,16 +11,15 @@ depends=('libx11' 'libxinerama')
 makedepends=('mercurial')
 conflicts=('dwm')
 provides=('dwm')
-source=('http://dwm.suckless.org/patches/nmaster-ncol.c'
-        'config.h'
+source=('config.h'
         'monocle-no-border.patch')
-md5sums=('279b014d22674cfc5eab60398c5d3a2e'
-         'd3f2b312c1c9a0f3c1969f4a797a95dc'
+md5sums=('7d7fe022bce4f5d176f697fb317f80eb'
          'ea218fd4823ea9b5cbf6b129473b3a2a')
 
 
 _hgroot='http://hg.suckless.org'
-_hgrepo='dwm'
+_hgroot='/home/jakob/projects/upstream-repos'
+_hgrepo='dwm-hg'
 
 build() {
     cd $srcdir
@@ -42,7 +41,6 @@ build() {
     cd "$srcdir/$_hgrepo-build"
 
     cp $srcdir/config.h .
-    cp $srcdir/nmaster-ncol.c .
     patch -p1 < $srcdir/monocle-no-border.patch
 
     sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
