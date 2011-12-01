@@ -13,7 +13,7 @@ conflicts=('dwm')
 provides=('dwm')
 source=('config.h'
         'monocle-no-border.patch')
-md5sums=('7d7fe022bce4f5d176f697fb317f80eb'
+md5sums=('36bf27ea39475a6e1eda7aa2842b74ea'
          'ea218fd4823ea9b5cbf6b129473b3a2a')
 
 
