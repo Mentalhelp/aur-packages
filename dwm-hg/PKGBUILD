@@ -1,7 +1,7 @@
 # Contributer: v2punkt0 <v2punkt0@gmail.com>
 
 pkgname='dwm-hg'
-pkgver=1589
+pkgver=1591
 pkgrel=1
 pkgdesc="The latest hg pull of dwm"
 url="http://dwm.suckless.org"
@@ -18,8 +18,7 @@ md5sums=('36bf27ea39475a6e1eda7aa2842b74ea'
 
 
 _hgroot='http://hg.suckless.org'
-_hgroot='/home/jakob/projects/upstream-repos'
-_hgrepo='dwm-hg'
+_hgrepo='dwm'
 
 build() {
     cd $srcdir
