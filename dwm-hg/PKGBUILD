@@ -1,7 +1,7 @@
 # Contributer: v2punkt0 <v2punkt0@gmail.com>
 
 pkgname='dwm-hg'
-pkgver=1591
+pkgver=1593
 pkgrel=1
 pkgdesc="The latest hg pull of dwm"
 url="http://dwm.suckless.org"
@@ -13,7 +13,7 @@ conflicts=('dwm')
 provides=('dwm')
 source=('config.h'
         'monocle-no-border.patch')
-md5sums=('36bf27ea39475a6e1eda7aa2842b74ea'
+md5sums=('9a147387932519f5f0a594475417bfe7'
          'ea218fd4823ea9b5cbf6b129473b3a2a')
 
 
