@@ -1,0 +1,74 @@
+# Contributor: tobias [tobias [at] archlinux.org]
+# Maintainer: Jakob Matthes <jakob.matthes@gmail.com>
+
+# Credits to: Gaetan Bisson <bisson@archlinux.org>
+
+# Derived from extra/mutt/PKGBUILD.
+
+pkgname=mutt-debian-git
+pkgver=20120127
+pkgrel=1
+pkgdesc='Small but very powerful text-based mail client'
+url='http://www.mutt.org/'
+license=('GPL')
+backup=('etc/Muttrc')
+arch=('i686' 'x86_64')
+conflicts=('mutt')
+provides=('mutt')
+replaces=('mutt')
+depends=('gpgme' 'ncurses' 'openssl' 'libsasl' 'gdbm' 'libidn' 'mime-types' 'krb5')
+
+_gitroot=git@bitbucket.org:jakobmatthes/mutt.git
+_gitname=mutt-debian
+_gitbranch=patches
+
+build() {
+	#cd "${srcdir}/${pkgname}-${pkgver}"
+	cd "$srcdir"
+	msg "Connecting to GIT server...."
+
+	if [[ -d "$_gitname" ]]; then
+		cd "$_gitname" && git pull origin && git co "$_gitbranch"
+		msg "The local files are updated."
+	else
+		git clone -b "$_gitbranch" "$_gitroot" "$_gitname"
+	fi
+
+	msg "GIT checkout done or server timeout"
+	msg "Starting build..."
+
+	rm -rf "$srcdir/$_gitname-build"
+	git clone -b "$_gitbranch" "$srcdir/$_gitname" "$srcdir/$_gitname-build"
+	cd "$srcdir/$_gitname-build"
+
+	autoreconf -fi
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--enable-gpgme \
+		--enable-hcache \
+		--enable-imap \
+		--enable-pop \
+		--enable-smtp \
+		--with-curses \
+		--with-idn \
+		--with-sasl \
+		--with-gss \
+		--with-regex \
+		--with-ssl
+
+	make
+}
+
+package() {
+	cd "$srcdir/$_gitname-build"
+	make DESTDIR="${pkgdir}" install
+
+	rm "${pkgdir}"/usr/bin/{flea,muttbug}
+	rm "${pkgdir}"/usr/share/man/man1/{flea,muttbug}.1
+	rm "${pkgdir}"/etc/mime.types{,.dist}
+	install -Dm644 contrib/gpg.rc "${pkgdir}"/etc/Muttrc.gpg.dist
+}
+
+# vim:noet ts=2 ft=sh
