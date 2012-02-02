@@ -25,7 +25,7 @@ static const Rule rules[] = {
     { "Gxmessage",NULL,       NULL,       0,            True,        -1 },
     { "MPlayer",  NULL,       NULL,       0,            True,        -1 },
     { "qemu-system-x86_64",NULL,NULL,     0,            True,        -1 },
-    { "trayer",   NULL,       NULL,       1 << 6,       False,       -1 },
+    { "trayer",   NULL,       NULL,       1 << 5,       False,       -1 },
 };
 
 /* layout(s) */
