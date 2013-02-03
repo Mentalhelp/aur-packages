@@ -66,8 +66,9 @@ static const char *mpcprev[]  = { "mpc","prev",NULL };
 static const char *mpcstop[]  = { "mpc","stop",NULL };
 static const char *mpctoggle[]  = { "mpc","toggle",NULL };
 
-static const char *voldown[]  = { "amixer","set","Master","3-",NULL };
-static const char *volup[]  = { "amixer","set","Master","3+",NULL };
+static const char *voldown[]  = { "amixer","-D","pulse","set","Master","2%-",NULL };
+static const char *volup[]  = { "amixer","-D","pulse","set","Master","2%+",NULL };
+static const char *volmute[]  = { "amixer","-D","pulse","set","Master","togglemute",NULL };
 
 static const char *suspend[]  = { "lock-suspend",NULL };
 static const char *hibernate[]  = { "lock-hibernate",NULL };
@@ -97,6 +98,7 @@ static Key keys[] = {
 	{ 0, XF86XK_AudioPlay, spawn, { .v = mpctoggle } },
 	{ 0, XF86XK_AudioLowerVolume, spawn, { .v = voldown } },
 	{ 0, XF86XK_AudioRaiseVolume, spawn, { .v = volup } },
+	{ 0, XF86XK_AudioMute, spawn, { .v = volmute } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

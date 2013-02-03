@@ -1,6 +1,6 @@
 pkgname=dwm-git
 _pkgname=dwm
-pkgver=20121209
+pkgver=20130203
 pkgrel=1
 pkgdesc="A dynamic window manager for X"
 url="http://dwm.suckless.org"
@@ -15,7 +15,7 @@ conflicts=('dwm')
 source=('config.h'
         'monocle-no-border.patch'
         dwm.desktop)
-md5sums=('e2a3cc6113260b6ef833752aec9017ae'
+md5sums=('32fc7a613c0404ccef3c2e3859ab5f36'
          'ea218fd4823ea9b5cbf6b129473b3a2a'
          '939f403a71b6e85261d09fc3412269ee')
 
