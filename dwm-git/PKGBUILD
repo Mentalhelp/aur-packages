@@ -15,7 +15,7 @@ conflicts=('dwm')
 source=('config.h'
         'monocle-no-border.patch'
         dwm.desktop)
-md5sums=('32fc7a613c0404ccef3c2e3859ab5f36'
+md5sums=('4f2e17e19feb92b89ba0f8893b811e25'
          'ea218fd4823ea9b5cbf6b129473b3a2a'
          '939f403a71b6e85261d09fc3412269ee')
 
