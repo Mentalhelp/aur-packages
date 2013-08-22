@@ -6,7 +6,8 @@
 # Derived from extra/mutt/PKGBUILD.
 
 pkgname=mutt-debian-git
-pkgver=20120127
+_gitname=mutt
+pkgver=1.5.21
 pkgrel=1
 pkgdesc='Small but very powerful text-based mail client'
 url='http://www.mutt.org/'
@@ -17,29 +18,16 @@ conflicts=('mutt')
 provides=('mutt')
 replaces=('mutt')
 depends=('gpgme' 'ncurses' 'openssl' 'libsasl' 'gdbm' 'libidn' 'mime-types' 'krb5')
+source=('git+https://github.com/jakobmatthes/mutt-debian#branch=patches')
+md5sums=('SKIP')
 
-_gitroot=git@bitbucket.org:jakobmatthes/mutt.git
-_gitname=mutt-debian
-_gitbranch=patches
+pkgver() {
+	cd $_gitname
+	git describe --always --tags | sed 's|-|.|g'
+}
 
-build() {
-	#cd "${srcdir}/${pkgname}-${pkgver}"
-	cd "$srcdir"
-	msg "Connecting to GIT server...."
-
-	if [[ -d "$_gitname" ]]; then
-		cd "$_gitname" && git pull origin && git co "$_gitbranch"
-		msg "The local files are updated."
-	else
-		git clone -b "$_gitbranch" "$_gitroot" "$_gitname"
-	fi
-
-	msg "GIT checkout done or server timeout"
-	msg "Starting build..."
-
-	rm -rf "$srcdir/$_gitname-build"
-	git clone -b "$_gitbranch" "$srcdir/$_gitname" "$srcdir/$_gitname-build"
-	cd "$srcdir/$_gitname-build"
+prepare() {
+	cd $_gitname
 
 	autoreconf -fi
 
@@ -57,14 +45,16 @@ build() {
 		--with-gss \
 		--with-regex \
 		--with-ssl
+}
 
+build() {
+	cd $_gitname
 	make
 }
 
 package() {
-	cd "$srcdir/$_gitname-build"
+	cd $_gitname
 	make DESTDIR="${pkgdir}" install
-
 	rm "${pkgdir}"/usr/bin/{flea,muttbug}
 	rm "${pkgdir}"/usr/share/man/man1/{flea,muttbug}.1
 	rm "${pkgdir}"/etc/mime.types{,.dist}
