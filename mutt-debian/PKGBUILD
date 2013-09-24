@@ -6,9 +6,9 @@
 # Derived from extra/mutt/PKGBUILD.
 
 pkgname=mutt-debian-git
-_gitname=mutt
+_gitname=mutt-debian
 pkgver=1.5.21
-pkgrel=1
+pkgrel=2
 pkgdesc='Small but very powerful text-based mail client'
 url='http://www.mutt.org/'
 license=('GPL')
@@ -20,11 +20,6 @@ replaces=('mutt')
 depends=('gpgme' 'ncurses' 'openssl' 'libsasl' 'gdbm' 'libidn' 'mime-types' 'krb5')
 source=('git+https://github.com/jakobmatthes/mutt-debian#branch=patches')
 md5sums=('SKIP')
-
-pkgver() {
-	cd $_gitname
-	git describe --always --tags | sed 's|-|.|g'
-}
 
 prepare() {
 	cd $_gitname
